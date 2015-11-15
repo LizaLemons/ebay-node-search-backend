@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>eBay NYC Search</title>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>eBay NYC Search</h1>
+  <div ng-app="eBayNycSearchApp">
+    <div ng-controller="searchController">
+
+      <!-- search input -->
+      <form ng-submit="submit()">
+        <p>Search for:{{text}}</p>
+        <input type="text" ng-model="text" name="text" placeholder="Enter search terms"/>
+        <input type="submit" id="submit" value="Submit" />
+      </form>
+
+      <!-- spinner -->
+      <div ng-show="loading" class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+      </div>
+
+      <!-- eBay results: -->
+      <div ng-repeat="result in searchResults">
+        <p>{{result.title[0]}}</p>
+        <p>Ships from: {{result.location[0]}}</p>
+        <a ng-href="{{result.viewItemURL[0]}}">See this item on eBay</a>
+        <div>
+          <img ng-src="{{result.galleryURL[0]}}" alt="">
+        </div>
+      </div>
+      <br>
+      <br>
+      <br>
+
+    </div>
+  </div>
+  <!-- scripts -->
+  <script src="node_modules/angular/angular.js"></script>
+  <script src="node_modules/angular-ui-bootstrap/ui-bootstrap.min.js"></script>
+  <script src="frontend.js"></script>
+</body>
+</html>
